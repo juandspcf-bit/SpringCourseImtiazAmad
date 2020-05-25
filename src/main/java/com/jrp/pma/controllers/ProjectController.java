@@ -44,21 +44,8 @@ public class ProjectController {
 	
 	@PostMapping("/save")
 	public String createProjectwithoutEmployees(Project aProject) {
-		System.out.println("A project without employees");
 		proRepo.save(aProject);
-		return "redirect:/projects/new";
-	}
-	
-	@PostMapping(path="/save", params= "employees")
-	public String createProject(Project aProject,  @RequestParam List<Long> employees, @RequestParam String stage) {
-		System.out.println("The current stage is" + stage);
-		System.out.println(employees);
-		//System.out.println(aProject.getEmployees());
-		proRepo.save(aProject);
-		(empRepo.findAllById(employees)).forEach((employee) -> {
-			employee.setProject(aProject);
-			empRepo.save(employee);
-		});
+		System.out.println(aProject.getEmployees());
 		
 		return "redirect:/projects/new";
 	}
