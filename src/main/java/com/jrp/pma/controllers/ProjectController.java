@@ -29,7 +29,7 @@ public class ProjectController {
 	public String getEmployees(Model model) {
 		List<Project> projects = proRepo.findAll();
 		model.addAttribute("projectsList", projects);
-		return "/project/projects";
+		return "project/projects";
 	}
 	
 	@GetMapping("/new")
@@ -43,7 +43,7 @@ public class ProjectController {
 	}
 	
 	@PostMapping("/save")
-	public String createProjectwithoutEmployees(Project aProject) {
+	public String createProject(Project aProject) {
 		proRepo.save(aProject);
 		System.out.println(aProject.getEmployees());
 		
