@@ -12,11 +12,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 @Entity
 public class Project {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(generator = "project_seq", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "project_seq", sequenceName = "project_seq", allocationSize = 1)
 	private long projectId;
 	
 	private String name;
